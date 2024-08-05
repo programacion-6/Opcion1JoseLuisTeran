@@ -1,4 +1,4 @@
-namespace LibraryManagementSystem.Tests;
+namespace LMS.Tests;
 
 public class UnitTest1
 {
