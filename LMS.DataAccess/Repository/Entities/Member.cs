@@ -10,6 +10,8 @@ public class Member : IEntityBase
     public string _membershipNumber { get; set; }
     public MemberType _memberType { get; set; }
 
+    public Member() {}
+
     public Member(Guid id, string firstName, string lastName, string phoneNumber, string email, string membershipNumber, MemberType memberType)
     {
         Id = id;

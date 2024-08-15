@@ -11,6 +11,8 @@ public class Book : IEntityBase
     public int _publicationYear { get; set; }
     public Genre _genre { get; set; }
 
+    public Book() {}
+
     public Book(Guid id, string isbn, string title, string description, 
                 Language language, string author, int publicationYear, Genre genre)
     {
