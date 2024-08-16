@@ -93,15 +93,26 @@ public class Book : IEntityBase
         {
             BorrowedBy = member;
             DueDate = dueDate;
+            State.Borrow(this, member);
         }
-        State.Borrow(this, member);
+        else
+        {
+            throw new InvalidOperationException("Book is not available for borrowing.");
+        }
     }
 
     public void Return()
     {
-        BorrowedBy = null;
-        DueDate = null;
-        State.Return(this);
+        if (BorrowedBy != null)
+        {
+            BorrowedBy = null;
+            DueDate = null;
+            State.Return(this);
+        }
+        else
+        {
+            throw new InvalidOperationException("Book was not borrowed.");
+        }
     }
 
     public bool IsAvailable()
