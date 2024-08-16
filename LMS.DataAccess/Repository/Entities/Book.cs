@@ -1,3 +1,5 @@
+using Opcion1JoseLuisTeran.LMS.DataAccess.Services;
+
 namespace Opcion1JoseLuisTeran.LMS.DataAccess.Repository.Entities;
 
 public class Book : IEntityBase
@@ -10,6 +12,9 @@ public class Book : IEntityBase
     private string _author;
     private int _publicationYear;
     private Genre _genre;
+    public IBookState State { get; set; }
+    public DateTime? DueDate { get; private set; }
+    public Member BorrowedBy { get; private set; }
 
     public Book() {}
 
@@ -37,6 +42,7 @@ public class Book : IEntityBase
         _author = author;
         _publicationYear = publicationYear;
         _genre = genre;
+        State = new AvailableState();
     }
 
     public string ISBN 
@@ -79,6 +85,28 @@ public class Book : IEntityBase
     {
         get => _genre;
         set => _genre = value;
+    }
+
+    public void Borrow(Member member, DateTime dueDate)
+    {
+        if (State.IsAvailable())
+        {
+            BorrowedBy = member;
+            DueDate = dueDate;
+        }
+        State.Borrow(this, member);
+    }
+
+    public void Return()
+    {
+        BorrowedBy = null;
+        DueDate = null;
+        State.Return(this);
+    }
+
+    public bool IsAvailable()
+    {
+        return State.IsAvailable();
     }
 
     public override string ToString()
