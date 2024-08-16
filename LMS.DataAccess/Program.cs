@@ -1,11 +1,9 @@
 ﻿using Opcion1JoseLuisTeran.LMS.DataAccess.Repository.Entities;
-using Opcion1JoseLuisTeran.LMS.DataAccess.Repository.Repositories.Concrets;
-using Opcion1JoseLuisTeran.LMS.DataAccess.Repository.Repositories.Interfaces;
 using Opcion1JoseLuisTeran.LMS.DataAccess.UI;
 
 public class Program
 {
-    private static Member _loggedInMember;
+    public static Member _loggedInMember;
 
     public static void Main(string[] args)
     {

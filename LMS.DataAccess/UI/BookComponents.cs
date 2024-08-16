@@ -6,7 +6,7 @@ namespace Opcion1JoseLuisTeran.LMS.DataAccess.UI;
 
 public class BookComponents
 {
-    private static IBookRepository _bookRepository = new BookRepository();
+    public static IBookRepository _bookRepository = new BookRepository();
     private static BookRepository bookRepository = new BookRepository();
 
     public static void AddBook()
